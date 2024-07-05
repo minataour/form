@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const Preview = () => {
+export const Preview = ({}) => {
   return (
-    <div>Preview</div>
+    <div className='form-card'>
+      <h2 className='fs-title'>Respone Review</h2>
+    </div>
   )
 }

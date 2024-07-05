@@ -1,30 +1,36 @@
 import React from 'react'
 
-export const PersonalInfo = ({ addressOne, addressTwo, city, state, zip, handleChange}) => {
+export const PersonalInfo = ({ addressOne, addressTwo, city, state, zip, handleChange, errors}) => {
   return (
     <div className="form-card">
       <h2 className="fs-title">Personal Information</h2>
       <input
         type="text"
         name="addressOne"
-        placeholder="Address Line 1"
+        placeholder="Address"
         value={addressOne}
         onChange={handleChange}
       />
+      {errors.addressError.length > 0 && 
+        <span className='error'>{errors.addressError}
+        </span>}
       <input
         type="text"
         name="addressTwo"
-        placeholder="Address Line 2"
+        placeholder="Address (optional)"
         value={addressTwo}
         onChange={handleChange}
       />
       <input
         type="text"
         name="state"
-        placeholder="City"
+        placeholder="State"
         value={state}
         onChange={handleChange}
       />
+      {errors.stateError.length > 0 && 
+        <span className='error'>{errors.stateError}
+        </span>}
       <input
         type="text"
         name="city"
@@ -32,6 +38,9 @@ export const PersonalInfo = ({ addressOne, addressTwo, city, state, zip, handleC
         value={city}
         onChange={handleChange}
       />
+      {errors.cityError.length > 0 && 
+        <span className='error'>{errors.cityError}
+        </span>}
       <input
         type="text"
         name="zip"

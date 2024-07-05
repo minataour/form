@@ -3,12 +3,6 @@
   margin: 0;
 }
 
-#msform {
-  text-align: center;
-  position: relative;
-  margin-top: 20px;
-}
-
 .App {
   background-image: linear-gradient(120deg, #FF4081, #81D4FA);
 }
@@ -88,3 +82,94 @@
   background: skyblue;
 }
 
+#msform {
+  text-align: center;
+  position: relative;
+  margin-top: 20px;
+}
+
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+#msform fieldset .form-card {
+  background: white;
+  border: 0 none;
+  border-radius: 0px;
+  box-shadow: 0 2px 2px 2px rgba(0,0,0,0.2);
+  padding: 20px 40px 30px 40px;
+  box-sizing: border-box;
+  width: 94%;
+  margin: 0 3% 20px 3%;
+  text-align: left;
+  color: #9e9e9e;
+}
+
+#msform input {
+  padding: 0px 8px 4px 8px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0px;
+  margin-bottom: 25px;
+  margin-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: monsterrat;
+  color: #2C3E50;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+#msform input:focus {
+  box-shadow: none !important;
+  border: none;
+  font-weight: bold;
+  border-bottom: 2px solid skyblue;
+  outline-width: 0;
+}
+
+#msform .action-button{
+  width: 100px;
+  background: skyblue;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#msform .action-button:hover {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue;
+}
+
+#msform .action-button-previous {
+  width: 100px;
+  background: #616161;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
+}
+
+.fs-title {
+  font-size: 25px;
+  color: #2C3E50;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: left;
+}
