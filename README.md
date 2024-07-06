@@ -1,6 +1,32 @@
 # Getting Started with Create React App
 
+## Installation and dependecies commands
+
+### `npx create-react-app`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+### `npm install ajv --save-dev`
+
+Use this for troubleshooting create-react-app if it fails to launch.
+
+### `npm install bootstrap@5.3.3`
+
+For Responsivness in app
+
+### `npm install --save font-awesome`
+
+### `npm i --save @fortawesome/fontawesome-svg-core`
+
+### `npm install --save @fortawesome/react-fontawesome`
+
+### `npm install --save @fortawesome/free-solid-svg-icons`
+
+Use these for fontawesome dependencies.
+
+### `npm i framer-motion`
+
+This is for animation and smoothness in form.
 
 ## Available Scripts
 

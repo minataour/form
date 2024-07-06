@@ -6,7 +6,8 @@ import { PersonalInfo } from './components/pesonal-info';
 import { useState } from 'react';
 import { Preview } from './components/preview';
 import { Success } from './components/success';
-import { useLocalStorage } from './components/useLocalStorage';
+import { useLocalStorage } from './components/useLocalStorage'; //custom hook for local storage
+import { motion } from 'framer-motion';
 
 function App() {
   const [formData, setFormData] = useLocalStorage("dsa",{
@@ -29,6 +30,7 @@ function App() {
     state: ''
   })
 
+  //Navigation code for form
   const [step, setStep] = useState(1)
 
   const prevStep = () => {
@@ -69,6 +71,7 @@ function App() {
     }
   }
 
+  // Validation for important form fields
   const fieldValidation = (name, value, currentErrors) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const phonePattern = /^\d{10}$/;
@@ -200,21 +203,18 @@ function App() {
                     <ul id="progressbar" className="p-0">
                       <li
                         className="active"
-                        onClick={() => setStep((step) => (step = 1))}
                         id="account"
                       >
                         <strong>Account</strong>
                       </li>
                       <li
                         className={`${step >= 2 && "active"}`}
-                        onClick={() => setStep((step) => (step = 2))}
                         id="personal"
                       >
                         <strong>Personal</strong>
                       </li>
                       <li
                         className={`${step >= 3 && "active"}`}
-                        onClick={() => setStep((step) => (step = 3))}
                         id="preview"
                       >
                         <strong>Preview</strong>

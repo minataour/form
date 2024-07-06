@@ -13,7 +13,7 @@ export const PersonalInfo = ({ addressOne, addressTwo, city, state, zip, handleC
       <input
         type="text"
         name="addressOne"
-        // className={`${errors.addressOne.length > 0 && "red"}`}
+        className={`${errors.addressOne.length > 0 && "red"}`}
         placeholder="Address"
         value={addressOne}
         onChange={handleChange}
