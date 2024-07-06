@@ -30,6 +30,7 @@
   width: 25%;
   float: left;
   position: relative;
+  transition: background-color 0.5s ease-in;
   cursor: pointer;
 }
 
@@ -64,6 +65,7 @@
   background: lightgray;
   border-radius: 50%;
   margin: 0 auto 10px auto;
+  transition: background-color 0.7s ease-in;
   padding: 2px;
 }
 
@@ -76,10 +78,11 @@
   left: 0;
   top: 25px;
   z-index: -1;
+  transition: background-color 0.3s ease-in;
 }
 
 #progressbar li.active::before, #progressbar li.active::after {
-  background: skyblue;
+  background-color: skyblue;
 }
 
 #msform {
@@ -184,6 +187,7 @@
 .error {
   color: red;
   font-size: 14px;
+  margin-left: 9px;
 }
 
 .field {
