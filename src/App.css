@@ -116,14 +116,17 @@
   border: none;
   border-bottom: 1px solid #ccc;
   border-radius: 0px;
-  margin-bottom: 25px;
-  margin-top: 2px;
+  margin-top: 25px;
   width: 100%;
   box-sizing: border-box;
   font-family: monsterrat;
   color: #2C3E50;
   font-size: 16px;
   letter-spacing: 1px;
+}
+
+#msform input.red {
+  border-bottom: 2px solid red;
 }
 
 #msform input:focus {
@@ -144,10 +147,12 @@
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
+  transition: background-color 0.5s ease-in;
 }
 
 #msform .action-button:hover {
   box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue;
+  background-color: #4689f2;
 }
 
 #msform .action-button-previous {
@@ -160,10 +165,12 @@
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
+  transition: background-color 0.5s ease-in;
 }
 
 #msform .action-button-previous:hover {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
+  background-color: #242424;
 }
 
 .fs-title {
@@ -172,4 +179,26 @@
   margin-bottom: 10px;
   font-weight: bold;
   text-align: left;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+.field {
+  padding: 0px 8px 4px 8px;
+  border: none;
+  margin-top: 25px;
+  box-sizing: border-box;
+  color: #2C3E50;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.info {
+  color: #242424;
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 8px;
 }

@@ -6,9 +6,10 @@ import { PersonalInfo } from './components/pesonal-info';
 import { useState } from 'react';
 import { Preview } from './components/preview';
 import { Success } from './components/success';
+import { useLocalStorage } from './components/useLocalStorage';
 
 function App() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useLocalStorage("dsa",{
     name: '',
     email: '',
     phone: '',
@@ -20,12 +21,12 @@ function App() {
   })
 
   const [errors, setErrors] = useState({
-    nameError: '',
-    emailError: '',
-    phoneError: '',
-    addressError: '',
-    cityError: '',
-    stateError: ''
+    name: '',
+    email: '',
+    phone: '',
+    addressOne: '',
+    city: '',
+    state: ''
   })
 
   const [step, setStep] = useState(1)
@@ -68,112 +69,74 @@ function App() {
     }
   }
 
-  const fieldValidation = (name, value) => {
+  const fieldValidation = (name, value, currentErrors) => {
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     const phonePattern = /^\d{10}$/;
+    let errormsg = ''
+    console.log(name,value)
 
     switch(name) {
       case 'name': 
         if(value.length === 0) {
-          setErrors(errors => ({
-            ...errors,
-            nameError: "Please enter name!" 
-          }))  
+          errormsg = "Please enter name!"
         } else if(value.length < 5) {
-          setErrors(errors => ({
-            ...errors,
-            nameError: "Full name must at least 5 characters!"
-          }))
+          errormsg = "Full name must at least 5 characters!"
         } else {
-          setErrors(errors => ({
-            ...errors,
-            nameError: ""
-          }))
+          errormsg = ""
         }
         break
       
       case 'email':
         if(value.length === 0) {
-          setErrors(errors => ({
-            ...errors,
-            emailError: "Please enter an email!" 
-          }))  
+          errormsg = "Please enter an email!"  
         } else if(!emailPattern.test(value)) {
-          setErrors(errors => ({
-            ...errors,
-            emailError: "Email is not valid!"
-          }))
+          errormsg = "Email is not valid!"
         } else {
-          setErrors(errors => ({
-            ...errors,
-            emailError: ""
-          }))
+          errormsg = ""
         }
         break
 
-        case 'phone':
+      case 'phone':
           if(value.length === 0){
-            setErrors(errors => ({
-              ...errors,
-              phoneError: "Enter a contact number!"
-            }))
+            errormsg = "Enter a contact number!"
           } else if(!phonePattern.test(value)) {
-            setErrors(errors => ({
-              ...errors,
-              phoneError: "Enter a valid contact!"
-            }))
+            errormsg = "Enter a valid contact!"
           } else {
-            setErrors(errors => ({
-              ...errors,
-              phoneError: ""
-            }))
+            errormsg = ""
           }
           break
 
-        case 'addressOne':
+      case 'addressOne':
           if(value.length === 0){
-            setErrors(errors => ({
-              ...errors,
-              addressError: "Enter address!"
-            }))
+            errormsg = "Enter address!"
           } else if (value.length < 10){
-            setErrors(errors => ({
-              ...errors,
-              addressError: "Enter minimum address!"
-            }))
+            errormsg = "Enter minimum address!"
           } else {
-            setErrors(errors => ({
-              ...errors,
-              addressError: ""
-            }))
+            errormsg = ""
           }
           break
 
-        case 'city':
+      case 'city':
           if(value.length === 0){
-            setErrors(errors => ({
-              ...errors,
-              cityError: "Enter a city!"
-            }))
+            errormsg = "Enter a city!"
           }
           break
 
-        case 'state':
+      case 'state':
           if(value.length === 0){
-            setErrors(errors => ({
-              ...errors,
-              stateError: "Enter a State!"
-            }))
+            errormsg = "Enter a State!"
           }
           break
 
-        default: return
+        default: return errormsg = ""
     }
+    return {...currentErrors, [name]: errormsg}
   }
 
   const handleChange = (event) => {
     event.preventDefault()
     const { name, value } = event.target
+    let newErrors = {...errors}
 
     setFormData(prevData => {
         return {
@@ -181,32 +144,42 @@ function App() {
             [name] : value
         }
     })
-    fieldValidation(name,value)
+
+    if(name != 'addressTwo' && name != 'zip'){
+      newErrors = fieldValidation(name,value, newErrors)
+       setErrors(e => e = newErrors)
+    }
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    let newErrors = {...errors}
+    if(step === 3){
+      setStep(step => step+1)
+      return
+    }
 
     switch(step){
       case 1:
-        fieldValidation('name', formData.name)
-        fieldValidation('email', formData.email)
-        fieldValidation('phone', formData.phone)
+        newErrors = fieldValidation('name', formData.name, newErrors)
+        newErrors = fieldValidation('email', formData.email, newErrors)
+        newErrors =  fieldValidation('phone', formData.phone, newErrors)
         break
       
       case 2:
-        fieldValidation('addressOne', formData.addressOne)
-        fieldValidation('city', formData.city)
-        fieldValidation('state', formData.state)
+        newErrors = fieldValidation('addressOne', formData.addressOne, newErrors)
+        newErrors = fieldValidation('city', formData.city, newErrors)
+        newErrors = fieldValidation('state', formData.state, newErrors)
         break
 
       default: return
     }
     
+    setErrors(e => e = newErrors)
+
     let valid = true
-    Object.values(errors).forEach(val => val.length > 0 && (valid = false))
+    Object.values(newErrors).forEach(val => val.length > 0 && (valid = false))
     if(valid){
-      console.log(valid)
       setStep(step => step + 1)
     } 
   }
